@@ -1,0 +1,400 @@
+import React, { useState } from 'react';
+import { GraduationCap, Clock, Calendar, MapPin, Phone, Mail, Award, BookOpen, Users, Globe, ChevronDown, ChevronUp } from 'lucide-react';
+
+const ProwineBrochure = () => {
+  const [openModule, setOpenModule] = useState(null);
+
+  const toggleModule = (moduleId) => {
+    setOpenModule(openModule === moduleId ? null : moduleId);
+  };
+
+  const modules = [
+    {
+      id: 'c1',
+      title: 'C1 – Parler professionnellement en Anglais sur le Vignoble',
+      content: [
+        'Présenter le domaine (production, superficie, producteur, vignes, encépagement, rendements…)',
+        'Expliciter les facteurs de différenciation de la propriété en parlant du terroir (climat, sol, cépage, humain)',
+        'Choix du travail saisonnier de la vigne (cycles végétatifs et maladies)',
+        'Différences entre les cépages (caractéristiques, typicité…)',
+        'Positionnement par rapport à l\'organique ou conventionnel'
+      ],
+      questions: [
+        'Qu\'est ce qu\'un terroir ?',
+        'Quel est le cycle de la vigne ?',
+        'Quels sont les différents types de sols ?',
+        'Quelles sont les fonctions et structures de la vigne ?',
+        'Rendement contre qualité ?',
+        'Quelles sont les principales maladies et insectes nuisibles à la vigne ?'
+      ]
+    },
+    {
+      id: 'c2',
+      title: 'C2 – Parler professionnellement en Anglais d\'une unité de vinification',
+      content: [
+        'Présenter le chais et la vinification (matériel, cheminement, transformation du raisin en vin)',
+        'Vinification rouge, blanc, rosé, effervescent',
+        'Techniques d\'élevage et mise en bouteille'
+      ],
+      questions: [
+        'Quels sont les composés physiques et chimiques du raisin ?',
+        'Comment un vin blanc est-il vinifié ?',
+        'Quels sont les choix du vinificateur pour élaborer le vin blanc de profil organoleptique souhaité ?',
+        'Comment un vin rouge est-il vinifié ?',
+        'Quels sont les choix du vinificateur pour élaborer le vin rouge de profil organoleptique souhaité ?'
+      ]
+    },
+    {
+      id: 'c3',
+      title: 'C3 – Enseigner professionnellement en anglais les basiques de la dégustation et de la description du vin',
+      content: [
+        'Décrire le vin de manière méthodique et synthétique sur chaque phase (visuel, olfactive, gustative)',
+        'Utiliser un vocabulaire riche, précis et adapté',
+        'Expliquer l\'origine des caractères ressentis lors de la dégustation',
+        'Typicités géographiques, cépages, zones climatiques, types de sols',
+        'Modes d\'élaboration, évolutions des vins et classements'
+      ],
+      questions: [
+        'Quelles sont les 7 étapes de la dégustation de vin ?',
+        'Qu\'est ce la roue des arômes des Vins ?',
+        'Quelles sont les principales caractéristiques des vins en bouche ?',
+        'Comment évaluer la qualité finale d\'un vin ?',
+        'Comment reconnaître gustativement les différents styles de vin du même cépage selon l\'origine, les choix du vinificateur, les conditions climatiques…'
+      ]
+    },
+    {
+      id: 'c4',
+      title: 'C4 – Communiquer professionnellement en anglais sur votre Marque et votre Mix Marketing',
+      content: [
+        'Promouvoir clairement l\'identité de la marque vin à l\'international (storytelling)',
+        'Stratégies de communication média',
+        'Fondamentaux du Mix Marketing des vins',
+        'Bonnes pratiques pour promouvoir vos vins en Chine',
+        'Bonnes pratiques pour promouvoir vos vins aux États-Unis'
+      ],
+      questions: [
+        'Comment promouvoir vos vins aux médias ?',
+        'Quels sont les fondamentaux du Mix Marketing des vins ?',
+        'Quelles sont les 10 bonnes pratiques pour promouvoir vos vins en Chine ?',
+        'Quelles sont les 10 bonnes pratiques pour promouvoir vos vins aux États-Unis ?'
+      ]
+    },
+    {
+      id: 'c5',
+      title: 'C5 – Vendre professionnellement du vin en anglais',
+      content: [
+        'Vendre à vos partenaires commerciaux à l\'export',
+        'Vente au domaine œnotouristique et en magasin de vin',
+        'Construire sa distribution et animer qualitativement les ventes',
+        'Accroître les ventes au domaine aux étrangers par des programmes touristiques adaptés'
+      ],
+      questions: [
+        'Comment présenter vos vins à des acheteurs professionnels ?',
+        'Comment présenter votre marque et distribuer vos vins ?',
+        'Quelles sont les 4 grandes règles pour réussir son tourisme des vins ?',
+        'Comment augmenter les ventes de vin au domaine ?'
+      ]
+    },
+    {
+      id: 'c7',
+      title: 'C7 – Guider et conseiller professionnellement en anglais les clients sur le choix des vins',
+      content: [
+        'Adapter son choix et expliquer le type de verrerie à utiliser selon les vins',
+        'Choisir selon couleur, âge et cépage pour améliorer la qualité perçue',
+        'Proposer les meilleurs vins selon les grands principes des associations mets et vins'
+      ],
+      questions: [
+        'Comment choisir le meilleur verre ?',
+        'Quels sont les plus grands principes d\'association mets et vins ?'
+      ]
+    },
+    {
+      id: 'c8',
+      title: 'C8 – Vin et santé en anglais',
+      content: [
+        'Stocker les bouteilles de vins dans les meilleures conditions de conservation',
+        'Conditions optimales de température, humidité et position',
+        'Durée de garde selon les types de vins'
+      ],
+      questions: []
+    }
+  ];
+
+  return (
+    <div className="w-full max-w-4xl mx-auto bg-white" style={{ fontFamily: 'Times New Roman, serif' }}>
+      {/* Header avec logo et image de fond */}
+      <div className="relative h-64 bg-gradient-to-r from-pink-100 to-purple-100 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-pink-300 rounded-full -mr-32 -mt-32"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full -ml-48 -mb-48"></div>
+        </div>
+        
+        <div className="relative z-10 flex flex-col items-center justify-center h-full px-8">
+          <div className="bg-white p-4 rounded-lg shadow-lg mb-4">
+            <img 
+              src="https://www.prowinelanguage.com/wp-content/uploads/2019/12/image.png" 
+              alt="Prowine Language" 
+              className="h-24 mx-auto"
+            />
+          </div>
+          <h1 className="text-4xl font-bold text-center" style={{ color: '#9F1757' }}>
+            Formation Anglais des Vins
+          </h1>
+          <p className="text-xl text-center mt-2" style={{ color: '#9F1757' }}>
+            Niveau 4 Métier + Certification TOEIC
+          </p>
+        </div>
+      </div>
+
+      {/* Informations clés en bandeau */}
+      <div className="grid grid-cols-3 gap-4 p-6 bg-gray-50">
+        <div className="text-center">
+          <Clock className="w-8 h-8 mx-auto mb-2" style={{ color: '#9F1757' }} />
+          <p className="font-bold text-sm">Durée</p>
+          <p className="text-sm">74 heures</p>
+          <p className="text-xs text-gray-600">34h prof + 40h e-learning</p>
+        </div>
+        <div className="text-center">
+          <Calendar className="w-8 h-8 mx-auto mb-2" style={{ color: '#9F1757' }} />
+          <p className="font-bold text-sm">Date</p>
+          <p className="text-sm">15 juin 2026</p>
+        </div>
+        <div className="text-center">
+          <Globe className="w-8 h-8 mx-auto mb-2" style={{ color: '#9F1757' }} />
+          <p className="font-bold text-sm">Format</p>
+          <p className="text-sm">100% à distance</p>
+          <p className="text-xs text-gray-600">Blended Learning</p>
+        </div>
+      </div>
+
+      {/* Contenu principal */}
+      <div className="p-8">
+        
+        {/* Objectifs */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#9F1757', borderBottom: '2px solid #9F1757', paddingBottom: '8px' }}>
+            <Award className="inline-block mr-2 mb-1" />
+            Objectifs de la Formation
+          </h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>Former les professionnels du vin à maîtriser l'anglais professionnel dans les secteurs de l'œnotourisme, de l'exportation, de la vente en magasin et en restauration.</p>
+            
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="bg-pink-50 p-4 rounded-lg">
+                <p className="font-bold mb-2" style={{ color: '#9F1757' }}>Compétences Métier</p>
+                <ul className="text-xs space-y-1">
+                  <li>• Présenter un domaine viticole</li>
+                  <li>• Guider des visites en anglais</li>
+                  <li>• Enseigner la dégustation</li>
+                  <li>• Vendre professionnellement</li>
+                  <li>• Conseiller sur les accords mets-vins</li>
+                </ul>
+              </div>
+              <div className="bg-purple-50 p-4 rounded-lg">
+                <p className="font-bold mb-2" style={{ color: '#9F1757' }}>Compétences Linguistiques</p>
+                <ul className="text-xs space-y-1">
+                  <li>• Comprendre l'anglais professionnel</li>
+                  <li>• Lire et analyser des documents</li>
+                  <li>• Communiquer efficacement</li>
+                  <li>• Interagir en contexte pro</li>
+                  <li>• Vocabulaire technique du vin</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Programme en accordéon */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#9F1757', borderBottom: '2px solid #9F1757', paddingBottom: '8px' }}>
+            <BookOpen className="inline-block mr-2 mb-1" />
+            Programme Détaillé
+          </h2>
+          
+          <div className="space-y-3">
+            {modules.map((module) => (
+              <div key={module.id} className="border rounded-lg overflow-hidden" style={{ borderColor: '#D99DB2' }}>
+                <button
+                  onClick={() => toggleModule(module.id)}
+                  className="w-full px-4 py-3 flex items-center justify-between bg-gradient-to-r from-pink-50 to-purple-50 hover:from-pink-100 hover:to-purple-100 transition-colors"
+                >
+                  <span className="font-bold text-left text-sm" style={{ color: '#9F1757' }}>
+                    {module.title}
+                  </span>
+                  {openModule === module.id ? (
+                    <ChevronUp className="w-5 h-5 flex-shrink-0" style={{ color: '#9F1757' }} />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 flex-shrink-0" style={{ color: '#9F1757' }} />
+                  )}
+                </button>
+                
+                {openModule === module.id && (
+                  <div className="px-4 py-3 bg-white text-xs">
+                    <div className="mb-3">
+                      <p className="font-bold mb-2" style={{ textDecoration: 'underline' }}>Compétences développées :</p>
+                      <ul className="space-y-1 pl-4">
+                        {module.content.map((item, index) => (
+                          <li key={index}>• {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    {module.questions.length > 0 && (
+                      <div>
+                        <p className="font-bold mb-2" style={{ textDecoration: 'underline' }}>Questions abordées :</p>
+                        <ul className="space-y-1 pl-4">
+                          {module.questions.map((question, index) => (
+                            <li key={index}>• {question}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-sm">
+            <p className="font-bold mb-1">Complément E-learning :</p>
+            <p className="text-xs">La plateforme d'e-learning en autonomie permet de compléter vos connaissances acquises avec le professeur privé en Viticulture, Vinification, Dégustation des vins, Marketing des vins, Commerce des vins, Œnotourisme et Sommellerie.</p>
+          </div>
+        </div>
+
+        {/* Organisation */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#9F1757', borderBottom: '2px solid #9F1757', paddingBottom: '8px' }}>
+            <Users className="inline-block mr-2 mb-1" />
+            Organisation Pédagogique
+          </h2>
+          
+          <div className="grid grid-cols-2 gap-6 text-sm">
+            <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-lg">
+              <p className="font-bold mb-3" style={{ color: '#9F1757', fontSize: '16px' }}>Cours avec Professeur</p>
+              <p className="mb-2"><strong>34 heures</strong> (17 cours de 2h)</p>
+              <p className="text-xs mb-2">• Professeur privé natif anglophone</p>
+              <p className="text-xs mb-2">• Professionnel du vin diplômé</p>
+              <p className="text-xs mb-2">• Google Meet à distance</p>
+              <p className="text-xs">• Personnalisation selon vos besoins</p>
+            </div>
+            
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg">
+              <p className="font-bold mb-3" style={{ color: '#9F1757', fontSize: '16px' }}>E-learning Autonome</p>
+              <p className="mb-2"><strong>40 heures</strong> (40 modules de 1h)</p>
+              <p className="text-xs mb-2">• Plateforme interactive en ligne</p>
+              <p className="text-xs mb-2">• Vidéos & articles de pros</p>
+              <p className="text-xs mb-2">• Quiz d'auto-évaluation</p>
+              <p className="text-xs">• Livret pédagogique inclus</p>
+            </div>
+          </div>
+
+          <div className="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-sm">
+            <p className="font-bold mb-1">Flexibilité totale :</p>
+            <p className="text-xs">Formation sur 4 semaines à 3 mois selon vos disponibilités • 1 à 5 cours de 2h par semaine • Délai minimum 2 semaines avant le démarrage</p>
+          </div>
+        </div>
+
+        {/* Certification */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#9F1757', borderBottom: '2px solid #9F1757', paddingBottom: '8px' }}>
+            <GraduationCap className="inline-block mr-2 mb-1" />
+            Certification
+          </h2>
+          
+          <div className="bg-gradient-to-r from-pink-100 to-purple-100 p-6 rounded-lg">
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <p className="font-bold mb-2" style={{ color: '#9F1757' }}>TOEIC 4 Compétences</p>
+                <p className="text-xs mb-2">Certification RS 7229 - ETS Global</p>
+                <p className="text-xs mb-2">Validité : 18/07/2025</p>
+                <p className="text-xs">Test adaptatif de 2h20 évaluant la compréhension écrite, orale et l'expression en anglais professionnel</p>
+              </div>
+              <div>
+                <p className="font-bold mb-2" style={{ color: '#9F1757' }}>Anglais du Vin</p>
+                <p className="text-xs mb-2">ProWine English Test</p>
+                <p className="text-xs mb-2">30 questions QCM en 20 minutes</p>
+                <p className="text-xs">Certificat de niveau (A1, A2, B1, B2, C1, C2) selon le Cadre Européen de Référence (CECRL)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Prérequis & Public */}
+        <div className="mb-8 grid grid-cols-2 gap-6">
+          <div>
+            <h3 className="text-base font-bold mb-3" style={{ textDecoration: 'underline' }}>Prérequis</h3>
+            <ul className="text-xs space-y-2">
+              <li>• Niveau minimum A1 en anglais</li>
+              <li>• Professionnel ou futur professionnel du vin</li>
+              <li>• Test de positionnement initial</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-base font-bold mb-3" style={{ textDecoration: 'underline' }}>Public Visé</h3>
+            <ul className="text-xs space-y-2">
+              <li>• Professionnels de l'œnotourisme</li>
+              <li>• Exportateurs de vin</li>
+              <li>• Cavistes et sommeliers</li>
+              <li>• Restaurateurs</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Tarif */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#9F1757', borderBottom: '2px solid #9F1757', paddingBottom: '8px' }}>
+            Tarif & Financement
+          </h2>
+          <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-lg text-center">
+            <p className="text-4xl font-bold mb-2" style={{ color: '#9F1757' }}>1 995 €</p>
+            <p className="text-sm mb-4">Formation non assujettie à la TVA</p>
+            <div className="text-xs space-y-1">
+              <p>Acompte de 30% à l'inscription • Solde 4 semaines avant le démarrage</p>
+              <p className="font-bold mt-3">Financement possible : CPF, France Travail, VIVEA, OPCO</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Lieu & Contact */}
+        <div className="grid grid-cols-2 gap-6 mb-8">
+          <div>
+            <h3 className="text-base font-bold mb-3" style={{ color: '#9F1757', textDecoration: 'underline' }}>Lieu de Formation</h3>
+            <div className="space-y-2 text-sm">
+              <p className="flex items-start">
+                <MapPin className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#9F1757' }} />
+                <span>Prowine Language<br/>48 rue Pierre Renaudel<br/>33400 Talence, France</span>
+              </p>
+              <p className="text-xs italic">Formation 100% à distance depuis votre domicile</p>
+            </div>
+          </div>
+          
+          <div>
+            <h3 className="text-base font-bold mb-3" style={{ color: '#9F1757', textDecoration: 'underline' }}>Contact Formateur</h3>
+            <div className="space-y-2 text-sm">
+              <p className="font-bold">Castel Christophe</p>
+              <p className="flex items-center">
+                <Phone className="w-4 h-4 mr-2" style={{ color: '#9F1757' }} />
+                <span>06 29 76 45 83</span>
+              </p>
+              <p className="flex items-center">
+                <Mail className="w-4 h-4 mr-2" style={{ color: '#9F1757' }} />
+                <span className="text-xs">c.castel@prowinelanguage.com</span>
+              </p>
+              <p className="text-xs italic mt-2">Référent handicap disponible</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t-2 pt-6 text-center" style={{ borderColor: '#D99DB2' }}>
+          <p className="text-xs mb-2">Organisme de formation certifié <strong>QUALIOPI</strong></p>
+          <p className="text-xs mb-2">N° de déclaration d'activité : 7533-10944-33 • Certificat QUALIOPI n°44330364-1</p>
+          <p className="text-xs" style={{ color: '#9F1757' }}>www.prowinelanguage.com</p>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default ProwineBrochure;
